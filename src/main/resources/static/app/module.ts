@@ -1,6 +1,7 @@
-angular.module('hello', [])
+export const module = angular.module('hello', [])
     .controller('home', function($scope, $http) {
         $http.get('/resource/').then(function(response) {
             $scope.greeting = response.data;
         })
-    });
+    })
+    .name;
