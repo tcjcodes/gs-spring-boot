@@ -57,10 +57,45 @@
     <build>
         <plugins>
             <plugin>
-                <!-- Builds a single executable JAR file that contains all the necessary dependencies, classes, and resources,
-                    and runs it. -->
+                <!-- For building the executable JAR and running the app in Tomcat. -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <!-- For managing the frontend -->
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+                <configuration>
+                    <!-- TODO delete -->
+                    <nodeDownloadRoot>http://build.chq.ei:8392/nexus/content/repositories/nodejs/</nodeDownloadRoot>
+                    <nodeVersion>v8.9.4</nodeVersion>
+                    <npmInheritsProxyConfigFromMaven>true</npmInheritsProxyConfigFromMaven>
+                </configuration>
+                <executions>
+                    <!-- Executes npm install -->
+                    <execution>
+                        <id>install-npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>npm-install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>npm-build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run-script build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
