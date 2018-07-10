@@ -28,6 +28,8 @@ module.exports = Object.assign({}, baseConfig, {
         new HtmlWebpackPlugin({
             title: 'App',
             template: path.resolve(__dirname, 'index.html'),
+            filename: 'index.html',
+            hash: true
         }),
     ]),
 }); // End config

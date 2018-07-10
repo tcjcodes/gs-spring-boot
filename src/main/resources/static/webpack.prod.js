@@ -1,4 +1,6 @@
 var baseConfig = require('./webpack.base');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
 /**
  * Webpack configuration for Production bundling.
@@ -15,5 +17,26 @@ module.exports = Object.assign({}, baseConfig, {
      * @see [devtool Docs]{@link https://webpack.js.org/configuration/devtool}
      */
     devtool: 'source-map', // Production-level source map
+
+    output: Object.assign({}, baseConfig.output, {
+        /**
+         * Base path for all assets within the app
+         */
+        publicPath: '/static/app/',
+    }),
+
+    plugins: baseConfig.plugins.concat([
+        /**
+         * Automatically inserts webpack bundles into the template,
+         * or generates HTML if `template` unspecified
+         * @see [Webpack Docs]{@link https://webpack.js.org/plugins/html-webpack-plugin}
+         */
+        new HtmlWebpackPlugin({
+            title: 'App',
+            template: path.resolve(__dirname, 'index.html'),
+            filename: 'index.html',
+            hash: true
+        }),
+    ]),
 
 });

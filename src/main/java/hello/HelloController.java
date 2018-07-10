@@ -1,5 +1,6 @@
 package hello;
 
+import static hello.Constants.API_PREFIX;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(API_PREFIX + "/v1")
 public class HelloController {
 
     @RequestMapping(value = "/resource", method = { GET })

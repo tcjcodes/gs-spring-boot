@@ -11,7 +11,7 @@ module.exports = {
          * Root of the app's dependency graph
          * @see {@link https://webpack.js.org/concepts/#entry}
          */
-        app: path.resolve(__dirname, 'index.ts'),
+        app: path.resolve(__dirname, 'app/app.module.ts'),
     },
 
     output: {
@@ -22,10 +22,6 @@ module.exports = {
          */
         pathinfo: false, // Disable to optimize build time
         path: path.resolve(__dirname, 'dist'),
-        /**
-         * Base path for all assets within the app
-         */
-        publicPath: '/static/app/',
         filename: 'app-bundle.js'
     },
 
@@ -38,7 +34,7 @@ module.exports = {
     devServer: {
         port: 8090,
         watchOptions: {
-            ignored: [/node_modules/, /vendors/]
+            ignored: [/node_modules/]
         },
         /**
          * Proxy requests from webpack-dev-server to Tomcat
@@ -83,19 +79,19 @@ module.exports = {
                     },
                 }]
             },
-            // {
-            //     test: /\.tpl\.html$/,
-            //     use: [
-            //         /**
-            //          * Make these files available for use as ngTemplates,
-            //          * e.g. `templateUrl` in components
-            //          * @see {@link https://github.com/WearyMonkey/ngtemplate-loader}
-            //          */
-            //         'ngtemplate-loader?prefix=static/app/',
-            //         'html-loader'
-            //     ],
-            //     exclude: [/node_modules/, /vendors/]
-            // },
+            {
+                test: /\.tpl\.html$/,
+                use: [
+                    /**
+                     * Make these files available for use as ngTemplates,
+                     * e.g. `templateUrl` in components
+                     * @see {@link https://github.com/WearyMonkey/ngtemplate-loader}
+                     */
+                    'ngtemplate-loader?prefix=static/app/',
+                    'html-loader'
+                ],
+                exclude: [/node_modules/]
+            },
             // {
             //     test: /\.css$/,
             //     exclude: /node_modules/,
