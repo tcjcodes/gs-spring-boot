@@ -1,16 +1,12 @@
 package hello;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /*
  * Convenience annotation, includes
@@ -22,14 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @SpringBootApplication
 public class Application {
-
-    @RequestMapping("/resource")
-    public Map<String,Object> home() {
-        Map<String,Object> model = new HashMap<String,Object>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("content", "Hello World");
-        return model;
-    }
 
     /**
      * Runs the whole application.
