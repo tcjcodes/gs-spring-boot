@@ -23,29 +23,5 @@ More endpoints can be found in the [docs](https://docs.spring.io/spring-boot/doc
 Managed by Spring Security.
 If Spring Security is on the classpath, then Spring Boot automatically secures all HTTP endpoints with "basic" authentication.
 
-```typescript
-
-interface Sitter {
-    image: string;
-    name: string;
-    phoneNumber: string; //?
-    email: string;
-}
-
-interface Owner {
-    image: string;
-    name: string;
-    dogs: string[]; // Breed[], fixed list?
-    phoneNumber: string; //?
-    email: string;
-}
-
-interface Review {
-    rating: number; // integer
-    sitter: string; // sitterID?
-    owner: string;	// ownerID?
-    startDate: Date;
-    endDate: Date;
-    text: string; // long
-}
-```
+Local
+`npm i -g webpack-dev-server`
