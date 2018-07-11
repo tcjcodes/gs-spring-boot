@@ -22,7 +22,8 @@ module.exports = {
          */
         pathinfo: false, // Disable to optimize build time
         path: path.resolve(__dirname, 'dist'),
-        filename: 'app-bundle.js'
+        filename: '[name].bundle.js',
+        // filename: 'app-bundle.js'
     },
 
     /**

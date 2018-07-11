@@ -1,7 +1,14 @@
 package hello;
 
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 /*
  * Convenience annotation, includes
@@ -13,6 +20,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Application {
+    @Autowired
+    Environment environment;
 
     /**
      * Runs the whole application.
@@ -21,4 +30,17 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    /*
+     * Runs on startup
+     */
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
+            printActiveProfiles();
+        };
+    }
+
+    private void printActiveProfiles() {
+        System.out.println("Active Spring profiles: " + Arrays.toString(environment.getActiveProfiles()));
+    }
 }

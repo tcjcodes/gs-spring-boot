@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var baseConfig = require('./webpack.base');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -20,6 +21,10 @@ module.exports = Object.assign({}, baseConfig, {
     },
 
     plugins: baseConfig.plugins.concat([
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+        }),
+
         /**
          * Automatically inserts webpack bundles into the template,
          * or generates HTML if `template` unspecified
@@ -27,8 +32,8 @@ module.exports = Object.assign({}, baseConfig, {
          */
         new HtmlWebpackPlugin({
             title: 'App',
-            template: path.resolve(__dirname, 'index.html'),
-            filename: 'index.html',
+            // template: path.resolve(__dirname, 'index.html'),
+            // filename: 'index.html',
             hash: true
         }),
     ]),
