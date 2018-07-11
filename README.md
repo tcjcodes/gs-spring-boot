@@ -24,4 +24,5 @@ Managed by Spring Security.
 If Spring Security is on the classpath, then Spring Boot automatically secures all HTTP endpoints with "basic" authentication.
 
 Local
+`npm i -g webpack-cli`
 `npm i -g webpack-dev-server`
